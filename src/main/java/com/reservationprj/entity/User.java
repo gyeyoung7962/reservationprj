@@ -8,19 +8,18 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
 @Entity
-public class User extends TimeEntity {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 50, unique = true)
-    private String email;
+    @Column(nullable = false, length = 30, unique = true)
+    private String username; // 아이디
 
     @Column(length = 500)
     private String password;
@@ -28,9 +27,20 @@ public class User extends TimeEntity {
     @Column(length = 10)
     private String name;
 
-    @Enumerated(EnumType.STRING)
-    @Column
-    private Role role;
+//    @Enumerated(EnumType.STRING)
+//    @Column
+//    private Role role;
+
+    @Builder
+    private User(Long id, String username, String password, String name){
+
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+//        this.role = role;
+    }
+
 
 
 }
