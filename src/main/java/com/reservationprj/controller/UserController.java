@@ -4,6 +4,7 @@ package com.reservationprj.controller;
 import com.reservationprj.dto.UserDTO;
 import com.reservationprj.entity.User;
 import com.reservationprj.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity<User> signup(@RequestBody UserDTO userDTO){
+    public ResponseEntity<User> signup(@Valid @RequestBody UserDTO userDTO){
 
         User user = userService.signUp(userDTO);
         return ResponseEntity.ok(user);
